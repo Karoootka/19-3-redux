@@ -1,17 +1,22 @@
 // w domyśle na potrzeby zadania przyjmuję, że uuid jest zainstalowane ;) Doinstaluję poźniej, jeśli zadanie będzie rozwijane.
 // import uuid from uuid;
 
-const ADD_COMMENT = 'ADD_COMMENT';
-const EDIT_COMMENT = 'EDIT_COMMENT';
-const REMOVE_COMMENT = 'REMOVE_COMMENT';
-const THUMB_UP_COMMENT = 'THUMB_UP_COMMENT';
-const THUMB_DOWN_COMMENT = 'THUMB_DOWN_COMMENT';
+// ACTIONS akcje
+
+export const ADD_COMMENT = 'ADD_COMMENT';
+export const EDIT_COMMENT = 'EDIT_COMMENT';
+export const REMOVE_COMMENT = 'REMOVE_COMMENT';
+export const THUMB_UP_COMMENT = 'THUMB_UP_COMMENT';
+export const THUMB_DOWN_COMMENT = 'THUMB_DOWN_COMMENT';
+
+// ACTIONS CREATORS kreatory akcji
 
 function AddComment(text) {
   return {
     type: ADD_COMMENT,
     text,
-    id: uuid()
+    id: uuid(),
+    thumbs: 0
   }
 };
 
@@ -42,9 +47,11 @@ function ThumbDownComment(id, thumbs) {
   return {
     type: THUMB_DOWN_COMMENT,
     id,
-    thumbs: thumbs + 1
+    thumbs: thumbs - 1
   }
 };
+
+// SHORT ACTIONS CREATORS skondensowane kreatory akcji + dispatch (wysyłka stanu)
 
 const boundAddComment = text => dispatch(AddComment(text));
 const boundRemoveComment = id => dispatch(RemoveComment(id));
