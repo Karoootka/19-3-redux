@@ -1,19 +1,12 @@
 // import {ADD_COMMENT, EDIT_COMMENT, REMOVE_COMMENT, THUMB_UP_COMMENT, THUMB_DOWN_COMMENT} from './actions';
-// import { users } from '/.users';
-import { comments } from './comments';
+import { combineReducers } from 'redux';
+import comments from './comments';
+import users from './users';
 
-
-const initialState = {
-  comments: [],
-  users: []
-};
-
-function app(state, action) {
-  return {
-    comments: comments(state.comments, action),
-    users: users(state.users, action)
-  }
-};
+const app = combineReducers({
+    comments,
+    users
+});
 
 // function reducer(state = initialState, action) {
 //   switch(action.type) {
